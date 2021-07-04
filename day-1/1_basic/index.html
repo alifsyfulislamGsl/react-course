@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+</head>
+<body>
+
+<div id="person"></div>
+
+<ul>
+    <li>var, let, const</li>
+    <li>default</li>
+    <li>rest</li>
+    <li>spread</li>
+    <li>object copy</li>
+    <li>type of</li>
+</ul>
+
+<script>
+    if (true){
+        let     x = 1;
+        const   y = 2;
+        var     z = 3;
+
+        console.log(x)
+        console.log(y)
+        console.log(z)
+    }
+
+    //var  is a block scope
+    console.log(z);
+
+    //let, const  is a block scope
+    //error reference error
+    // console.log(y);
+    // console.log(x);
+
+
+
+    function printA() {
+        var a = 10
+        console.log(a)
+    }
+
+    function printB() {
+        var b = 20;
+        return b;
+    }
+
+    printA();
+    // a is not global variable reference error
+    // console.log(a)
+    console.log(printA()) //this function has no return value
+    console.log(printB())
+
+
+    //default value
+    function mutiply(a, b = 1) {
+        return a*b;
+    }
+    console.log(mutiply(5)) // answer
+
+    //b has no default value
+    // function sum(a, b) {
+    //     return a+b;
+    // }
+    // console.log(sum(5)) //NaN
+
+
+    //rest
+    function getParams(a,...params) {
+        return params
+    }
+    console.log(getParams(1,2,3))
+
+    //spread is used to copy or merged array
+
+    const x = {
+        name    : 'liza',
+        age     : '25'
+    }
+
+    const y = {
+        ...x, //rest
+        address : 'malibagh'
+    }//spread copy and mergedl
+
+    console.log(y);
+
+
+    // object assign
+    // const student = {
+    //     name : 'Hassan',
+    //     age : 22,
+    //     address : {
+    //         city : 'Dhaka'
+    //     }
+    // }
+    //
+    // console.log(student)
+    //1
+
+    // const copy = student
+    //
+    // console.log(copy)
+    //
+    // student.name = "Alif";
+    //
+    // console.log(copy)
+    // i just changed from student but copy changed parallel.
+
+    //reference object prequiler behave
+
+
+    //2
+
+    // let copy2 = Object.assign({},student)
+    //
+    // student.name = "Alif";
+    // student.address.city = 'Mirpur';
+    //
+    // console.log(student)
+    //
+    // console.log(copy2)
+
+
+    //3
+
+    // let copy3 = {
+    //     ...student
+    // }
+    //
+    // student.name = "Alif";
+    // student.address.city = 'Mirpur';
+    //
+    // console.log(student)
+    //
+    // console.log(copy3)
+
+    //these are shallow copy
+
+    //deep copy
+
+    // console.log(JSON.stringify(student))
+    //return string
+    // console.log(JSON.parse(JSON.stringify(student)))
+
+    // let copy4 = JSON.parse(JSON.stringify(student));
+    //
+    // student.name = 'rasel';
+    // student.address.city = 'Gazipur';
+    //
+    // console.log(student)
+    // console.log(copy4)
+    //
+    // //templete string
+    //
+    // let name = 'Syful';
+    // let designation = 'Software Engineer'
+    //
+    // let str = "My name is " + name + ". And My designation is " + designation + ".";
+    // console.log(str)
+    //
+    // let str2 = `my name is ${name}. And my designation is ${designation}.`
+    // console.log(str2)
+
+
+
+
+    //
+
+    console.log(typeof {}) // object
+    console.log(typeof undefined) // undefined
+    console.log(typeof 'helloword') // string
+    console.log(typeof 3.6) // number
+
+    // !! - Becareful - !!
+    console.log(typeof NaN) // number
+    console.log(typeof []) // object
+    console.log(typeof null) // object
+
+    console.log(isNaN(NaN), NaN === NaN, NaN === 'NaN')
+    // true, false, false
+    console.log( undefined + 1) // NaN
+    console.log( typeof true) // NaN
+
+
+    //short properties
+
+    // let fullName = "Syful Islam Alif";
+    //
+    // let employee = {
+    //     fullName,
+    //     age : 10
+    // }
+    //
+    // console.log(employee)
+
+
+    const id= [1,2,3,4,5,6]
+
+    let deleteID = 5;
+
+    console.log(id)
+
+    if (id.indexOf(deleteID)) {
+        console.log(id.indexOf(deleteID)) //4 index a 5 ache!
+        let index = id.indexOf(deleteID)
+        console.log(id.includes(deleteID))
+
+        id.splice(index,1)
+
+        console.log(id)
+    }
+
+    //destruction unpack value from object
+    let person = {
+        id : 1,
+        name : 'Rohim',
+        age : 22,
+        address : {
+            city : 'Dhaka'
+        },
+        subject : [
+            {
+                cgpa: 3.0,
+                course : 'Bangla'
+            },
+            {
+                cgpa: 3.1,
+                course : 'English'
+            }
+        ]
+    };
+
+
+    // document.getElementById('person').innerHTML = JSON.stringify(person,null,2)
+
+    console.log(person.name)
+    console.log(person.subject[1].cgpa)
+
+    const {
+        name,
+        subject : [
+            {
+                cgpa
+            }
+        ]
+    } = person
+
+    console.log(name,cgpa)
+
+    //arrow function
+
+    let val1 = 2;
+    let val2 = 4;
+
+    let add = function add(val1,val2) {
+        return val1+val2;
+    }
+
+    console.log(add(val1,val2))
+
+    let sum = (val1,val2) => val1+val2;
+
+    console.log(sum(val1,val2))
+
+
+
+
+    //filter,map,reduce
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <ul>
+        <li>Arrow Func</li>
+        <li>Map</li>
+        <li>Reduce</li>
+        <li>Filter</li>
+    </ul>
+
+    <script>
+
+        getName= ( name ) => ({
+            name
+        })
+
+        console.log(getName('santa'));
+
+        getInfo = ( name ) =>   {
+            const age = 30;
+            return {
+                name,
+                age
+            }
+        }
+
+        console.log(getInfo('alif'));
+
+        let persons = [
+            {
+                id : 1,
+                name : 'alif',
+                age : 26,
+                subjects: ['bangla','english']
+            },
+            {
+                id : 2,
+                name : 'liza',
+                age : 24,
+                subjects: ['bangla','english']
+            },
+            {
+                id : 1,
+                name : 'santa',
+                age : 26,
+                subjects: ['bangla','english']
+            }
+        ]
+
+        // map
+
+        // let names = [];
+        //
+        // names = persons.map((person)=>{
+        //     return person.name
+        // })
+        //
+        // console.log(names)
+        //
+        //
+        // let personNames = persons.map( ({name}) => name)
+        // let personInfo = persons.map( ({name, age}) => `person name: ${name} and age is: ${age}`)
+        //
+        // console.log(personNames)
+        // console.log(personInfo)
+        //
+        //
+        // const {
+        //     employeeName,
+        //     employeeAge
+        // } = {
+        //     employeeName : 'Robi',
+        //     employeeAge : 27,
+        // }
+        //
+        // console.log(employeeName)
+        // console.log(employeeAge)
+
+        let subjects = persons.map( ({subjects}) => subjects )
+
+        console.log(subjects)
+
+        let newPersons = persons.map( ({name,age})=>({
+            name,
+            isOlder : age > 24 ? true: false
+        }))
+
+        console.log(newPersons)
+
+
+        // filter
+
+        // let olderStudent = persons.filter(({age}) => {
+        //     return age > 24;
+        // })
+        //
+        // console.log(olderStudent)
+
+        let olderStdentNames = persons.filter(({age}) =>   age > 24 ).map(({name}) => name)
+        console.log(olderStdentNames)
+
+        // reduce has 3 parameter
+
+        let totalAge = persons.reduce((acc, {age}) => age+acc, 0)
+        console.log(totalAge)
+
+        // closer
+        // outer func innet func
+
+        function makeFunc() {
+            let name = 'mozilla'
+
+            function disPlay() {
+                return name;
+            }
+
+            return disPlay();
+        }
+
+        console.log(makeFunc())
+
+
+        function userType(typeID) {
+            return {
+                menus : [typeID ==1 ? 'admin' : 'customer']
+            }
+        }
+
+
+        function panel() {
+            let typeID = 1;
+            let name = "Rasel"
+
+            // return {
+            //     typeID,
+            //     name
+            // }
+
+            return (h) =>{
+                let menus = h(typeID)
+
+                return {
+                    ...menus,
+                    name,
+                    typeID
+                }
+            }
+        }
+
+        // console.log(panel());
+
+        let f = panel();
+        let p  = f(userType)
+
+        console.log(p)
+    </script>
+</body>
+</html>

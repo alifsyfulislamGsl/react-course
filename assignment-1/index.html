@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    const students = [
+        {
+            id : 1,
+            name: 'Rasel',
+            subjects: [
+                {
+                    course : 'Bangla',
+                    cgpa : 2.0
+                },
+                {
+                    course : 'English',
+                    cgpa : 2.0
+                },
+                {
+                    course : 'Math',
+                    cgpa : 2.0
+                }
+            ]
+        },
+        {
+            id : 2,
+            name: 'Faruk',
+            subjects: [
+                {
+                    course : 'Bangla',
+                    cgpa : 4.0
+                },
+                {
+                    course : 'English',
+                    cgpa : 4.0
+                }
+            ]
+        },
+        {
+            id : 3,
+            name: 'Liza',
+            subjects: [
+                {
+                    course : 'Bangla',
+                    cgpa : 5.0
+                },
+                {
+                    course : 'English',
+                    cgpa : 2.0
+                },
+                {
+                    course : 'Math',
+                    cgpa : 5.0
+                }
+            ]
+        }
+
+    ]
+
+    //first task filter from students who has 2 subjects
+    let filterStudent = students.filter(({subjects}) => {
+        return subjects.length == 3
+    })
+    console.log(filterStudent)
+
+    //second task who's id 1
+    let firstUser = students.map(({id,name})=> ({id,name})).filter(({id,name})=>{
+        return id === 1
+    })
+
+    //destructuring array
+    const [a] = firstUser;
+
+    //destructuring object
+    const {
+        id,
+        name
+    } = a
+    console.log(`${name} whose id is ${id}`);
+
+
+
+</script>
+
+</body>
+</html>
