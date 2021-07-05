@@ -67,20 +67,40 @@
     })
     console.log(filterStudent)
 
-    //second task who's id 1
-    let firstUser = students.map(({id,name})=> ({id,name})).filter(({id,name})=>{
-        return id === 1
-    })
+    // second task who's id 1
+    // let firstUser = students.map(({id,name})=> ({id,name})).filter(({id,name})=>{
+    //     return id === 1
+    // })
+    //
+    // //destructuring array
+    // const [a] = firstUser;
+    //
+    // //destructuring object
+    // const {
+    //     id,
+    //     name
+    // } = a
+    // console.log(`${name} whose id is ${id}`);
+
+    let firstUser =  students.filter(({subjects,id}) => {return subjects.length ===3 && id ===1 }).map(({name,id}) => ({
+        'sentence' : `${name} whose id is ${id}`
+    }))
 
     //destructuring array
     const [a] = firstUser;
 
+
     //destructuring object
     const {
-        id,
-        name
+        sentence
     } = a
-    console.log(`${name} whose id is ${id}`);
+    console.log(sentence);
+
+
+
+
+
+
 
 
 
